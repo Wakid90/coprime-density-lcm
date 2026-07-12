@@ -27,10 +27,10 @@ A(c)=\sum_{j\ge1}e^{-cj}\log\!\left(1+\frac1j\right).
 
 ## Repository contents
 
-- `Coprime_Density_LCM_Preprint_Verified.tex` - current LaTeX source.
-- `Coprime_Density_LCM_Preprint_Verified.pdf` - compiled preprint.
+- `Coprime_Density_LCM_Preprint_Revised.tex` - revised LaTeX source.
+- `Coprime_Density_LCM_Preprint_Revised.pdf` - compiled revised preprint.
 - `fig1_convergence.pdf` - deterministic Monte Carlo convergence figure.
-- `fig2_joint_scaling.pdf` - exact prime-sum joint-scaling figure.
+- `fig2_joint_scaling.pdf` - deterministic direct-prime-sum joint-scaling figure.
 - `reproduce_results.py` - regenerates both figures and all three numerical tables.
 - `figure1_points.csv` - raw points and standard errors used in Figure 1.
 - `table1_monte_carlo.csv` - raw Table 1 estimates, seeds, and standard errors.
@@ -46,8 +46,9 @@ A(c)=\sum_{j\ge1}e^{-cj}\log\!\left(1+\frac1j\right).
 A standard TeX Live installation with `pdflatex` is sufficient.
 
 ```bash
-pdflatex -interaction=nonstopmode -halt-on-error Coprime_Density_LCM_Preprint_Verified.tex
-pdflatex -interaction=nonstopmode -halt-on-error Coprime_Density_LCM_Preprint_Verified.tex
+pdflatex -interaction=nonstopmode -halt-on-error Coprime_Density_LCM_Preprint_Revised.tex
+pdflatex -interaction=nonstopmode -halt-on-error Coprime_Density_LCM_Preprint_Revised.tex
+pdflatex -interaction=nonstopmode -halt-on-error Coprime_Density_LCM_Preprint_Revised.tex
 ```
 
 The figures must remain in the same directory as the `.tex` file.
@@ -76,7 +77,7 @@ cell seed = 2026 + 1000*M + k
 replicates = 2000
 ```
 
-The Table 3 calculation sieves primes up to \(10^7\), so memory use can reach several hundred megabytes.
+The Table 3 calculation sieves primes up to \(10^7\), so memory use can reach several hundred megabytes. Deterministic prime sums use double precision, and the positive series for `A(c)` is truncated when the next term is below `1e-17`.
 
 ## Run the theorem audit
 
@@ -84,7 +85,7 @@ The Table 3 calculation sieves primes up to \(10^7\), so memory use can reach se
 python verify_theorems.py > AUDIT_REPORT.txt
 ```
 
-The included audit report records **51 passed checks and 0 failures**. The audit checks exact finite cases of the subset identity, the fixed-\(M\) bounds, the formula for \(q^{**}(M)\), the joint-scaling numerics, and the asymptotics of \(A(c)\). These computational checks supplement, but do not replace, the proofs in the paper.
+Regenerate the audit report after any source or code change. The included revised report records **54 passed checks and 0 failures**. The audit checks exact finite cases of the subset identity, the fixed-\(M\) bounds, the formula for \(q^{**}(M)\), the joint-scaling numerics, and the asymptotics of \(A(c)\). These computational checks supplement, but do not replace, the proofs in the paper.
 
 ## Citation
 
